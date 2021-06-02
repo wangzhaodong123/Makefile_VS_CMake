@@ -1,3 +1,7 @@
+# QT dir
+INCLUDE_QT = $(shell pkg-config --cflags Qt5Widgets)
+LIBDIR_QT  = $(shell pkg-config --libs Qt5Widgets)
+
 #OPENCV
 INCLUDE_OPENCV = $(shell pkg-config --cflags opencv)
 LIBDIR_OPENCV = $(shell pkg-config --libs opencv)
@@ -34,8 +38,8 @@ LIBDIR_G2O = /usr/local/lib/libg2o_core.so /usr/local/lib/libg2o_types_sba.so \
 all:joinMap
 
 joinMap:joinMap.o
-	g++ -std=c++11 -Wno-deprecated -o joinMap joinMap.o $(LIBDIR_PCL) $(LIBDIR_OPENCV) $(LIBDIR_BOOST) $(LIBDIR_OPENNI) $(LIBDIR_VTK) $(LIBDIR_G2O)
+	g++ -std=c++11 -Wno-deprecated -o joinMap joinMap.o $(LIBDIR_PCL) $(LIBDIR_OPENCV) $(LIBDIR_BOOST) $(LIBDIR_OPENNI) $(LIBDIR_VTK) $(LIBDIR_G2O) $(LIBDIR_QT)
 joinMap.o:joinMap.cpp
-	g++ -std=c++11 -Wno-deprecated -c joinMap.cpp $(INCLUDE_OPENCV) $(INCLUDE_EIGEN) $(INCLUDE_PCL) $(INCLUDE_VTK) $(INCLUDE_OPENNI) $(INCLUDE_G2O)
+	g++ -std=c++11 -Wno-deprecated -c joinMap.cpp $(INCLUDE_OPENCV) $(INCLUDE_EIGEN) $(INCLUDE_PCL) $(INCLUDE_VTK) $(INCLUDE_OPENNI) $(INCLUDE_G2O) $(INCLUDE_QT)
 clean:
 	rm -f *.o joinMap
