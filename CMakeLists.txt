@@ -7,6 +7,9 @@ set( CMAKE_CXX_FLAGS "-std=c++11 -O3" )
 # 添加cmake模块路径
 list( APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules )
 
+# QT
+find_package(Qt5Widgets REQUIRED)
+
 # opencv 
 find_package( OpenCV REQUIRED )
 include_directories( ${OpenCV_INCLUDE_DIRS} )
@@ -27,4 +30,4 @@ set( G2O_LIBS
 )
 
 add_executable( joinMap joinMap.cpp )
-target_link_libraries( joinMap ${OpenCV_LIBS} ${PCL_LIBRARIES} ${G2O_LIBS})
+target_link_libraries( joinMap ${OpenCV_LIBS} ${PCL_LIBRARIES} ${G2O_LIBS} Qt5::Widgets)
